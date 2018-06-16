@@ -120,9 +120,31 @@ registerServiceWorker();
       //---connect takes two things----mapstatetoprops--and---mapdispatchprops---
       export default connect(undefined,{createTodo})(App);
 ```
-![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/createtodoinapp.PNG) 
+![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/createtodoinapp.PNG)   
 -add mapstatetoprops in app.js  
 ```
+_handleSubmit = e => 
+  { e.preventDefault();
+    this.props.createTodo(this.state.text);
+    this.setState({ text: '', });
+  };
+  render() 
+  {
+    return (
+      <div className="App">
+         <form className="App-intro" onSubmit={this._handleSubmit}>
+           <input value={this.state.text} onChange={this._handleChange} type="text" name="text" placeholder="create todo"  />
+         </form>
+         <br />
+         { this.props.todos.map(({text, id}) => ( <div key={id}>  {text} </div>
+                                              )
+                              )
+         }
+      </div>
+    );
+  }
+}
 export default connect(state => ({todos: state.todos}),{createTodo})(App);
 ```
 ![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/addmapstatetoprops.PNG) 
+![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/todosaddedinappjs.PNG) 

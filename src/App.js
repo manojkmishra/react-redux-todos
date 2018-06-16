@@ -21,15 +21,13 @@ class App extends Component
     return (
       <div className="App">
          <form className="App-intro" onSubmit={this._handleSubmit}>
-          <input value={this.state.text} onChange={this._handleChange} type="text" name="text" placeholder="create todo"  />
-        </form>
-        <br />
-        {this.props.todos.map(todo => ( <div key={todo.id}>
-                                         {todo.text}
-                                        </div>
-                                       )
+           <input value={this.state.text} onChange={this._handleChange} type="text" name="text" placeholder="create todo"  />
+         </form>
+         <br />
+         { this.props.todos.map(({text, id}) => ( <div key={id}>  {text} </div>
+                                              )
                               )
-        }
+         }
       </div>
     );
   }
