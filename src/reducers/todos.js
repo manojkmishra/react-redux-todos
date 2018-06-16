@@ -1,4 +1,4 @@
-import { CREATE_TODO,COMPLETED_TODO} from '../actions/todos';
+import { CREATE_TODO,COMPLETED_TODO,DELETED_TODO} from '../actions/todos';
 import uuid from 'uuid/v4';
 
 export default (state = [], action) => 
@@ -11,6 +11,8 @@ export default (state = [], action) =>
      case COMPLETED_TODO: 
        return state.map(todo=>(todo.id === action.id ? { ...todo, completed: !todo.completed} : todo), ) 
        //so id sent from action--map it to one item--if id=action.id--we keep todo(id,text)--toggle completed---else return all todo
+     case DELETED_TODO: 
+       return state.filter(todo=>todo.id !==action.id) //return all but one which is clicked
      default:  return state;
   }
  

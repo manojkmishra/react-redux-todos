@@ -1,11 +1,13 @@
 ## react-redux-todos (reactJS, redux)
 
 ### Installation steps
-
+-git clone repo   
+-npm install     
+-npm start  
 
 ### Development steps
 -npm i -g create-react-app  
--create-react-app react-redux-todos
+-create-react-app react-redux-todos  
 
 #### send to github
 -git init  
@@ -146,19 +148,28 @@ _handleSubmit = e =>
 }
 export default connect(state => ({todos: state.todos}),{createTodo})(App);
 ```
-![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/addmapstatetoprops.PNG) 
-![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/todosaddedinappjs.PNG)   
--add COMPLETED_TODO in actions and reducer similar to CREATE_TODO
--------------------actions/todos.js
-    export const COMPLETED_TODO = 'COMPLETED_TODO';
-    export function completedTodo(id) 
-    { console.log('/src/actions/todos.js-type:COMPLETED_TODO id=', id)
-    return { type: COMPLETED_TODO, id}
-    }
--------------reducers/todos.js
-    import { CREATE_TODO,COMPLETED_TODO} from '../actions/todos';
-    case COMPLETED_TODO: 
-    return state.map(todo=>(todo.id === action.id ? { ...todo, completed: !todo.completed} : todo), ) 
-    //so id sent from action--map it to one item--if id=action.id--we keep todo(id,text)--toggle completed---else return all todo
-![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/completedtodoinmaps.PNG) 
-![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/completedtodo.PNG) 
+![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/addmapstatetoprops.PNG)   
+![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/todosaddedinappjs.PNG)    
+-add COMPLETED_TODO in actions and reducer similar to CREATE_TODO  
+``` 
+actions/todos.js  
+      export const COMPLETED_TODO = 'COMPLETED_TODO';  
+      export function completedTodo(id)   
+      { console.log('/src/actions/todos.js-type:COMPLETED_TODO id=', id)  
+      return { type: COMPLETED_TODO, id}  
+      }  
+reducers/todos.js  
+      import { CREATE_TODO,COMPLETED_TODO} from '../actions/todos';  
+      case COMPLETED_TODO:   
+      return state.map(todo=>(todo.id === action.id ? { ...todo, completed: !todo.completed} : todo), )   
+      //so id sent from action--map it to one item--if id=action.id--we keep todo(id,text)--toggle completed---else return all todo  
+``` 
+![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/completedtodoinmaps.PNG)   
+![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/completedtodo.PNG)    
+-now add DELETED_TODO in actions/reducer and to mapstate of app.js---reducer logic is as below
+```
+     case DELETED_TODO: 
+       return state.filter(todo=>todo.id !==action.id) //return all but one which is clicked
+```
+![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/deletetodo.PNG)  
+
