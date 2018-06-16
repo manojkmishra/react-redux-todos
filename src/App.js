@@ -1,21 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { connect } from 'react-redux';
+import { createTodo} from './actions/todos';
 
-class App extends Component {
-  render() {
+class App extends Component 
+{ state = {text: '',}
+  _handleChange = e => 
+  { console.log('/src/App.js_handleChange-e.target=', e.target);
+    this.setState({  [e.target.name]: e.target.value, });
+  };
+  _handleSubmit = e => 
+  { e.preventDefault();
+  //  console.log('/src/App.js_handleSubmit-e=',e)
+    //this.props.createTodo();
+    this.props.createTodo(this.state.text);
+   // this.setState({ text: '', });
+  };
+  render() 
+  {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+         <form className="App-intro" onSubmit={this._handleSubmit}>
+          <input value={this.state.text} onChange={this._handleChange} type="text" name="text" placeholder="create todo"  />
+        </form>
       </div>
     );
   }
 }
-
-export default App;
+//export default App;
+//export default connect()(App);
+//---connect takes two things----mapstatetoprops--and---mapdispatchprops---
+export default connect(undefined,{createTodo})(App);
