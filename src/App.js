@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
-import { createTodo} from './actions/todos';
+import { createTodo, completedTodo,} from './actions/todos';
 
 class App extends Component 
 { state = {text: '',}
@@ -16,6 +16,9 @@ class App extends Component
     this.props.createTodo(this.state.text);
     this.setState({ text: '', });
   };
+  _handleCompleted = id => 
+  {  this.props.completedTodo(id);
+  };
   render() 
   {
     return (
@@ -24,7 +27,11 @@ class App extends Component
            <input value={this.state.text} onChange={this._handleChange} type="text" name="text" placeholder="create todo"  />
          </form>
          <br />
-         { this.props.todos.map(({text, id}) => ( <div key={id}>  {text} </div>
+         { this.props.todos.map(({text, id, completed}) =>
+                 ( <div key={id}>  
+                       {text}
+                          <input onChange={() => this._handleCompleted(id)} type="checkbox" value={completed} />
+                                                           </div>
                                               )
                               )
          }
@@ -36,4 +43,4 @@ class App extends Component
 //export default connect()(App);
 //---connect takes two things----mapstatetoprops--and---mapdispatchprops---
 //export default connect(undefined,{createTodo})(App);
-export default connect(state => ({todos: state.todos}),{createTodo})(App);
+export default connect(state => ({todos: state.todos}),{createTodo, completedTodo,})(App);
