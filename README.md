@@ -121,3 +121,8 @@ registerServiceWorker();
       export default connect(undefined,{createTodo})(App);
 ```
 ![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/createtodoinapp.PNG) 
+-add mapstatetoprops in app.js  
+```
+export default connect(state => ({todos: state.todos}),{createTodo})(App);
+```
+![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/addmapstatetoprops.PNG) 
