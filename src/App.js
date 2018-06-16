@@ -22,7 +22,7 @@ class App extends Component
   _handleDeleted = id => {  this.props.deletedTodo(id);   };
   _handleDeletedAllCompleted = () => {  this.props.deletedAllCompletedTodo(); }
   render() 
-  {
+  { if (!this.props.todos.isFetched) {  return <h1>Loading...</h1>; }
     return (
       <div className="App">
          <form className="App-intro" onSubmit={this._handleSubmit}>

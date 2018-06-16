@@ -4,7 +4,10 @@
 -git clone repo   
 -yarn install     
 -yarn start, front-end will start on localhost:3000 (yarn can be downloaded from https://yarnpkg.com/latest.msi)  
--yarn jsonserver, backend will start on localhost:3001 (start server for json api source- https://github.com/typicode/json-server)
+-for server less react/redux, use [git checkout 1995ae3], add/checkbox for completed/delete/deleteallcompleted working.  
+-yarn jsonserver, backend will start on localhost:3001 (start server for json api source- https://github.com/typicode/json-server)  
+![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/frontend.PNG) 
+![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/backend.PNG) 
 
 ### Development steps
 -npm i -g create-react-app  
