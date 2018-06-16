@@ -172,4 +172,10 @@ reducers/todos.js
        return state.filter(todo=>todo.id !==action.id) //return all but one which is clicked
 ```
 ![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/deletetodo.PNG)  
+-now add DELETED_ALL_COMPLETED_TODO in actions/reducer and to mapstate of app.js---reducer logic is as below
+```
+     case DELETED_ALL_COMPLETED_TODO:
+       return state.filter(todo => !todo.completed);
+```
+![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/deleteallcompletedtodos.PNG)  
 

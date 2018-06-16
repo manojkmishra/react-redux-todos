@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
-import { createTodo, completedTodo,deletedTodo,} from './actions/todos';
+import { createTodo, completedTodo,deletedTodo,deletedAllCompletedTodo} from './actions/todos';
 
 class App extends Component 
 { state = {text: '',}
@@ -18,6 +18,7 @@ class App extends Component
   };
   _handleCompleted = id =>  {  this.props.completedTodo(id);   };
   _handleDeleted = id => {  this.props.deletedTodo(id);   };
+  _handleDeletedAllCompleted = () => {  this.props.deletedAllCompletedTodo(); }
   render() 
   {
     return (
@@ -26,15 +27,19 @@ class App extends Component
            <input value={this.state.text} onChange={this._handleChange} type="text" name="text" placeholder="create todo"  />
          </form>
          <br />
-         { this.props.todos.map(({text, id, completed}) =>
-                                  ( <div key={id}>  
-                                        {text}
-                                            <input onChange={() => this._handleCompleted(id)} type="checkbox" value={completed} />
-                                            <button onClick={() => this._handleDeleted(id)}>Delete</button>
-                                    </div>
+            { this.props.todos.map(({text, id, completed}) =>
+                                      ( <div key={id}>  
+                                            {text}
+                                                <input onChange={() => this._handleCompleted(id)} type="checkbox" value={completed} />
+                                                <button onClick={() => this._handleDeleted(id)}>Delete</button>
+                                        </div>
+                                      )
                                   )
-                               )
-         }
+            }
+         <br />
+         <hr />
+         <br />
+        <button onClick={this._handleDeletedAllCompleted}>Delete All Completed</button>
       </div>
     );
   }
@@ -43,4 +48,4 @@ class App extends Component
 //export default connect()(App);
 //---connect takes two things----mapstatetoprops--and---mapdispatchprops---
 //export default connect(undefined,{createTodo})(App);
-export default connect(state => ({todos: state.todos}),{createTodo, completedTodo,deletedTodo,})(App);
+export default connect(state => ({todos: state.todos}),{createTodo, completedTodo,deletedTodo,deletedAllCompletedTodo})(App);
