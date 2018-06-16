@@ -2,8 +2,9 @@
 
 ### Installation steps
 -git clone repo   
--npm install     
--npm start  
+-yarn install     
+-yarn start (yarn can be downloaded from https://yarnpkg.com/latest.msi)  
+-yarn jsonserver (start server for json api source- https://github.com/typicode/json-server)
 
 ### Development steps
 -npm i -g create-react-app  
@@ -178,4 +179,11 @@ reducers/todos.js
        return state.filter(todo => !todo.completed);
 ```
 ![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/deleteallcompletedtodos.PNG)  
+-install json-server from https://github.com/typicode/json-server, add in package.json and start and access db.json on localhost:port/db/
+here its http://localhost:3001/db/  or http://localhost:3001/todos/  
+![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/startdbserver.PNG)     
+-yarn add axios redux-thunk , import redux-thunk in store and add in middlewares  
+
+
+
 
