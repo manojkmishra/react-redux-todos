@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
-import { createTodo, completedTodo,deletedTodo,deletedAllCompletedTodo} from './actions/todos';
+import { createTodo, completedTodo,deletedTodo,deletedAllCompletedTodo, fetchTodos} from './actions/todos';
+import Todo from './components/Todo';
 
 class App extends Component 
 { state = {text: '',}
+  componentDidMount() { this.props.fetchTodos();  }
   _handleChange = e => 
   { //console.log('/src/App.js_handleChange-e.target=', e.target);
     this.setState({  [e.target.name]: e.target.value, });
@@ -27,15 +29,8 @@ class App extends Component
            <input value={this.state.text} onChange={this._handleChange} type="text" name="text" placeholder="create todo"  />
          </form>
          <br />
-            { this.props.todos.map(({text, id, completed}) =>
-                                      ( <div key={id}>  
-                                            {text}
-                                                <input onChange={() => this._handleCompleted(id)} type="checkbox" value={completed} />
-                                                <button onClick={() => this._handleDeleted(id)}>Delete</button>
-                                        </div>
-                                      )
-                                  )
-            }
+            { this.props.todos.data.map( todo =>(<Todo {...todo} key={todo.id}/>))}
+
          <br />
          <hr />
          <br />
@@ -48,4 +43,4 @@ class App extends Component
 //export default connect()(App);
 //---connect takes two things----mapstatetoprops--and---mapdispatchprops---
 //export default connect(undefined,{createTodo})(App);
-export default connect(state => ({todos: state.todos}),{createTodo, completedTodo,deletedTodo,deletedAllCompletedTodo})(App);
+export default connect(state => ({todos: state.todos}),{createTodo, completedTodo,deletedTodo,deletedAllCompletedTodo, fetchTodos})(App);

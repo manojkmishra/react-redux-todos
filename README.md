@@ -3,8 +3,8 @@
 ### Installation steps
 -git clone repo   
 -yarn install     
--yarn start (yarn can be downloaded from https://yarnpkg.com/latest.msi)  
--yarn jsonserver (start server for json api source- https://github.com/typicode/json-server)
+-yarn start, front-end will start on localhost:3000 (yarn can be downloaded from https://yarnpkg.com/latest.msi)  
+-yarn jsonserver, backend will start on localhost:3001 (start server for json api source- https://github.com/typicode/json-server)
 
 ### Development steps
 -npm i -g create-react-app  
@@ -179,10 +179,13 @@ reducers/todos.js
        return state.filter(todo => !todo.completed);
 ```
 ![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/deleteallcompletedtodos.PNG)  
--install json-server from https://github.com/typicode/json-server, add in package.json and start and access db.json on localhost:port/db/
-here its http://localhost:3001/db/  or http://localhost:3001/todos/  
+-install json-server from https://github.com/typicode/json-server, add in package.json and start on localhost:port here its 3001.
+access db.json on http://localhost:3001/db/  or http://localhost:3001/todos/  
 ![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/startdbserver.PNG)     
 -yarn add axios redux-thunk , import redux-thunk in store and add in middlewares  
+-modify files in actions/reducers/app.js as given, now fetch will be working as shown in pic  
+![enter image description here](https://github.com/manojkmishra/react-redux-todos/blob/master/screenshots/fetchapiworking.PNG)    
+
 
 
 
